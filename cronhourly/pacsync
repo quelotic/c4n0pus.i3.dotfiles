@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Syncs the package database
+# Checks for upgradable packages
+# Prints the URL of any possible upgrades.
+# Writes the output to updates.log which we will parse with the conky script
+
+sudo pacman -Syup --noprogressbar > $HOME/.config/conky/pacupdates/updates.log

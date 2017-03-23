@@ -1,0 +1,175 @@
+# one line for i3bar
+out_to_x no
+out_to_console yes
+short_units yes
+update_interval 1
+use_spacer left
+pad_percents 2
+cpu_avg_samples 2
+net_avg_samples 2
+diskio_avg_samples 2
+
+TEXT
+[\
+# Capslock
+${if_match "${exec xset q | grep 'Caps Lock' | sed 's/.*Caps Lock:[ ]*\([^ ]*\).*/\1/'}"=="on"}
+{"full_text":"  CapsLock","color":"\#00FF00","separator":false,"separator_block_width":0},\
+${endif}
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Updates available
+#{"full_text":" System","color":"\#888888","separator":false,"separator_block_width":6},\
+#${if_match ${execi perl ~/.config/conky/pacupdates/pacupdates.pl}==0}
+#{"full_text":"Updated","color":"\#AAF096","separator":false,"separator_block_width":0},\
+#${else}
+#${if_match ${execi perl ~/.config/conky/pacupdates/pacupdates.pl}==1}
+#{"full_text":"${execi perl ~/.config/conky/pacupdates/pacupdates.pl} Update","color":"\#FF3333","separator":false,"separator_block_width":0},\
+#${else}
+#${if_match ${execi perl ~/.config/conky/pacupdates/pacupdates.pl}>1}
+#${execi perl ~/.config/conky/pacupdates/pacupdates.pl} Updates","color":"\#FF3333","separator":false,"separator_block_width":0},\
+#${endif}${endif}
+
+#################################################################################
+#{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# SSID
+{"full_text":" ${addr wlp4s0}","color":"\#c8ccd9","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${if_match "${wireless_essid wlp4s0}"=="off/any"}
+{"full_text":"No WiFi","color":"\#ee829f","separator":false,"separator_block_width":6},\
+${else}
+{"full_text":"${wireless_essid wlp4s0}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${endif}
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Upload
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+{"full_text":"${upspeed wlp4s0}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Download
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+{"full_text":"${downspeed wlp4s0}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# CPU
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${if_match ${cpu cpu0}<25}
+{"full_text":"${cpu cpu0}%","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${else}
+${if_match ${cpu cpu0}<50}
+{"full_text":"${cpu cpu0}%","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${else}
+${if_match ${cpu cpu0}<75}
+{"full_text":"${cpu cpu0}%","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${else}
+${if_match ${cpu cpu0}<=100}
+{"full_text":"{cpu cpu0}%","color":"\#7780a1","separator":false,"separator_block_width":0},\
+${endif}${endif}${endif}${endif}
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Memory
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${if_match ${memperc}<30}
+{"full_text":"${mem}B","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${else}
+${if_match ${memperc}<60}
+{"full_text":"${mem}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${else} 
+${if_match ${memperc}<85}
+{"full_text":"${mem}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${else}
+${if_match ${memperc}>=85}
+{"full_text":"${mem}","color":"\#7780a1","separator":false,"separator_block_width":0},\
+${endif}${endif}${endif}${endif}
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Battery
+# icon
+${if_match ${exec cat /sys/class/power_supply/BAT1/capacity}<5}
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${else}
+${if_match ${exec cat /sys/class/power_supply/BAT1/capacity}<25}
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${else}
+${if_match ${exec cat /sys/class/power_supply/BAT1/capacity}<50}
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${else}
+${if_match ${exec cat /sys/class/power_supply/BAT1/capacity}<75}
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${else}
+${if_match ${exec cat /sys/class/power_supply/BAT1/capacity}<101}
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+${endif}${endif}${endif}${endif}${endif}
+# percentage
+${if_match "${exec cat /sys/class/power_supply/BAT1/status}"=="null"}
+{"full_text":"NoBat","color":"\#ee829f","separator":false,"separator_block_width":0},\
+${else}
+${if_match "${exec cat /sys/class/power_supply/BAT1/status}"=="Charging"}
+{"full_text":"${exec cat /sys/class/power_supply/BAT1/capacity}%","color":"\#ade774","separator":false,"separator_block_width":0},\
+${else}
+${if_match ${exec cat /sys/class/power_supply/BAT1/capacity}<25}
+{"full_text":"${exec cat /sys/class/power_supply/BAT1/capacity}%","color":"\#ee829f","separator":false,"separator_block_width":0},\
+${else}
+{"full_text":"${exec cat /sys/class/power_supply/BAT1/capacity}%","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${endif}${endif}${endif}
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Volume
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+
+# amixer
+#${if_match "${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f8 | tr -d '[]'}"=="off"}
+#{"full_text":"MUTE","color":"\#ee829f","separator":false,"separator_block_width":0},\
+#${else}
+#{"full_text":"${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6 | tr -d '[]%'}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+#${endif}
+
+# pulseaudio
+${if_match ${exec pactl list sinks | grep "Volume: front-left:" | cut -d "/" -f2 | tr -d ' %'}>100}
+{"full_text":"${exec pactl list sinks | grep "Volume: front-left:" | cut -d "/" -f2 | tr -d ' %'}","color":"\#ee829f","separator":false,"separator_block_width":0},\
+${else}
+${if_match "${exec pactl list sinks | grep "Mute: " | cut -d " " -f2}"=="yes"}
+{"full_text":"MUTE","color":"\#ee829f","separator":false,"separator_block_width":0},\
+${else}
+{"full_text":"${exec pactl list sinks | grep "Volume: front-left:" | cut -d "/" -f2 | tr -d ' %'}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+${endif}${endif}
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Date
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+{"full_text":"${time %d.%m.%Y}","color":"\#c8ccd9","separator":false,"separator_block_width":0},\
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Time
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+{"full_text":"${time %H:%M} ","color":"\#c8ccd9","separator":false}\
+],

@@ -1,0 +1,116 @@
+! You may want to run $ xrdb -merge ~/.Xresources with each update
+
+! Rofi
+!rofi.color-enabled: true
+!                      'background',   'border'
+rofi.color-window:      argb:b42d303b, #7c8389, #1d1f21
+! State:                'bg',          'fg',   'bgalt',       'hlbg',   'hlfg'
+rofi.color-normal:      argb:31d1f21,  #c4cbd4, argb:96404552, #4084d6, #f9f9f9
+rofi.color-urgent:      argb:2c1d1f21, #cc6666, argb:e54b5160, #a54242, #f9f9f9
+rofi.color-active:      argb:2c1d1f21, #65acff, argb:e44b5160, #4491ed, #f9f9f9
+rofi.width: 100
+rofi.lines: 5
+!rofi.modi: window,run,ssh
+rofi.columns: 1
+rofi.font: Noto Sans 12
+rofi.bw: 0
+!rofi.location: 0
+rofi.padding: 500
+!rofi.yoffset: 0
+!rofi.xoffset: 0
+!rofi.sidebar-mode: false
+rofi.eh: 1
+!rofi.line-margin: 3
+rofi.separator-style: none
+rofi.hide-scrollbar: true
+!rofi.fullscreen: false
+!rofi.scrollbar-width: 8
+
+! URxvt
+! General settings
+URxvt.saveLines: 2000
+URxvt.scrollBar: False
+URxvt.scrollstyle: rxvt
+URxvt.termName: rxvt-256color
+URxvt.urgentOnBell: True
+URxvt.cursorBlink: False
+URxvt.internalBorder: 15
+
+! Trapsparency
+URxvt.transparent: true
+URxvt.shading: 40
+
+! Extensions
+!URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+!URxvt.urlLauncher: xdg-open
+!URxvt.urlButton: 1
+!URxvt.underlineURLs: True
+
+!URxvt.copyCommand:  xclip -i -selection clipboard
+!URxvt.pasteCommand: xclip -o -selection clipboard
+
+! Keybindings
+!URxvt.keysym.Mod4-c: perl:clipboard:copy
+!URxvt.keysym.Mod4-v: perl:clipboard:paste
+!URxvt.keysym.Mod4-C-v: perl:clipboard:paste_escaped
+!URxvt.keysym.M-c: perl:clipboard:copy
+!URxvt.keysym.M-v: perl:clipboard:paste
+!URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!URxvt.keysym.C-Escape: perl:keyboard-select:activate
+!URxvt.keysym.M-u: perl:url-select:select_next
+
+! DejaVu Font
+URxvt.font:             xft:DejaVu Sans Mono:style=Book:pixelsize=12
+URxvt.boldFont:         xft:DejaVu Sans Mono:style=Bold:pixelsize=12
+URxvt.italicFont:       xft:DejaVu Sans Mono:style=Oblique:pixelsize=12
+URxvt.boldItalicFont:   xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=12
+URxvt.letterSpace:      -1
+
+! XFT settings
+Xft.dpi: 96
+!Xft.antialias: true
+!Xft.rgba: rgb
+!Xft.hinting: true
+!Xft.hintstyle: hintslight
+
+! Ashes dark theme
+
+*.background: #1c2023
+*.foreground: #c7ccd1
+!*.cursorColor: #c7ccd1
+
+! black
+*.color0  : #1c2023
+*.color8  : #747c84
+! red
+*.color1  : #c7ae95
+*.color9  : #c7ae95
+! green
+*.color2  : #95c7ae
+*.color10 : #95c7ae
+! yellow
+*.color3  : #aec795
+*.color11 : #aec795
+! blue
+*.color4  : #ae95c7
+*.color12 : #ae95c7
+! magenta
+*.color5  : #c795ae
+*.color13 : #c795ae
+! cyan
+*.color6  : #95aec7
+*.color14 : #95aec7
+! white
+*.color7  : #c7ccd1
+*.color15 : #f3f4f5
+
+! XTerm
+XTerm*termName: xterm-256color
+XTerm*saveLines: 1024
+XTerm*utf8: True
+XTerm*locale: True
+XTerm*utf8Title: True
+XTerm*renderFont: True
+XTerm*xftAntialias: true
+XTerm*faceName: xft:Ubuntu Mono 10
