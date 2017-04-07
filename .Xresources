@@ -1,44 +1,46 @@
 ! You may want to run $ xrdb -merge ~/.Xresources with each update
 
 ! Rofi
-!rofi.color-enabled: true
+rofi.color-enabled: true
 !                      'background',   'border'
-rofi.color-window:      argb:b42d303b, #7c8389, #1d1f21
-! State:                'bg',          'fg',   'bgalt',       'hlbg',   'hlfg'
-rofi.color-normal:      argb:31d1f21,  #c4cbd4, argb:96404552, #4084d6, #f9f9f9
-rofi.color-urgent:      argb:2c1d1f21, #cc6666, argb:e54b5160, #a54242, #f9f9f9
-rofi.color-active:      argb:2c1d1f21, #65acff, argb:e44b5160, #4491ed, #f9f9f9
-rofi.width: 100
-rofi.lines: 5
-!rofi.modi: window,run,ssh
+!rofi.color-window:      argb:b4002b37, #002b37, #003642
+! State:                 'bg',          'fg',       'bgalt',        'hlbg',     'hlfg'
+!rofi.color-normal:      argb:31002b37, #819396,    argb:96002b37,  #003642,    #819396
+!rofi.color-active:      argb:2c002b37, #008ed4,    argb:e5002b37,  #003642,    #008ed4
+!rofi.color-urgent:      argb:2c002b37, #da4281,    argb:e4002b37,  #003642,    #da4281
+!rofi.width: 100
+!rofi.lines: 5
+!rofi.bw: 0
+!rofi.padding: 500
+!rofi.eh: 1
+
+rofi.modi: window,run,ssh
 rofi.columns: 1
-rofi.font: Noto Sans 12
-rofi.bw: 0
-!rofi.location: 0
-rofi.padding: 500
-!rofi.yoffset: 0
-!rofi.xoffset: 0
-!rofi.sidebar-mode: false
-rofi.eh: 1
-!rofi.line-margin: 3
+rofi.font: xos4 Terminus 14
 rofi.separator-style: none
 rofi.hide-scrollbar: true
-!rofi.fullscreen: false
-!rofi.scrollbar-width: 8
+
+!                       'background'    'border'
+rofi.color-window:      #002b37,        #002b37,    #003642
+! State:                'bg'        'fg'        'bgalt'     'hlbg'      'hlfg'
+rofi.color-normal:      #002b37,    #819396,    #002b37,    #003642,    #819396
+rofi.color-active:      #002b37,    #008ed4,    #002b37,    #003642,    #008ed4
+rofi.color-urgent:      #002b37,    #da4281,    #002b37,    #003642,    #da4281
+rofi.width: 600
+rofi.lines: 4
+rofi.eh: 1
+rofi.padding: 40
+rofi.bw: 20
 
 ! URxvt
 ! General settings
 URxvt.saveLines: 2000
 URxvt.scrollBar: False
 URxvt.scrollstyle: rxvt
-URxvt.termName: rxvt-256color
+URxvt.termName: xterm-256color
 URxvt.urgentOnBell: True
 URxvt.cursorBlink: False
 URxvt.internalBorder: 15
-
-! Trapsparency
-URxvt.transparent: true
-URxvt.shading: 40
 
 ! Extensions
 !URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
@@ -65,52 +67,72 @@ URxvt.font:             xft:DejaVu Sans Mono:style=Book:pixelsize=12
 URxvt.boldFont:         xft:DejaVu Sans Mono:style=Bold:pixelsize=12
 URxvt.italicFont:       xft:DejaVu Sans Mono:style=Oblique:pixelsize=12
 URxvt.boldItalicFont:   xft:DejaVu Sans Mono:style=BoldOblique:pixelsize=12
-URxvt.letterSpace:      -1
+URxvt.letterSpace:      -2
 
 ! XFT settings
 Xft.dpi: 96
-!Xft.antialias: true
-!Xft.rgba: rgb
-!Xft.hinting: true
-!Xft.hintstyle: hintslight
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
 
-! Ashes dark theme
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
-*.background: #1c2023
-*.foreground: #c7ccd1
-!*.cursorColor: #c7ccd1
+! Trapsparency
+!URxvt.depth: 32
+!URxvt.blurRadius: 5
+!*background:            [85]S_base03
+*background:            S_base03
+*foreground:            S_base00
+*fading:                40
+*fadeColor:             S_base03
+*cursorColor:           S_base1
+*pointerColorBackground:S_base01
+*pointerColorForeground:S_base1
 
-! black
-*.color0  : #1c2023
-*.color8  : #747c84
-! red
-*.color1  : #c7ae95
-*.color9  : #c7ae95
-! green
-*.color2  : #95c7ae
-*.color10 : #95c7ae
-! yellow
-*.color3  : #aec795
-*.color11 : #aec795
-! blue
-*.color4  : #ae95c7
-*.color12 : #ae95c7
-! magenta
-*.color5  : #c795ae
-*.color13 : #c795ae
-! cyan
-*.color6  : #95aec7
-*.color14 : #95aec7
-! white
-*.color7  : #c7ccd1
-*.color15 : #f3f4f5
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
 
-! XTerm
-XTerm*termName: xterm-256color
-XTerm*saveLines: 1024
-XTerm*utf8: True
-XTerm*locale: True
-XTerm*utf8Title: True
-XTerm*renderFont: True
-XTerm*xftAntialias: true
-XTerm*faceName: xft:Ubuntu Mono 10
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
+
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
+
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
+
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3

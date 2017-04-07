@@ -7,7 +7,9 @@
 #[ -z "$PS1" ] && return
 
 #PS1='[\u@\h \w]\$ '
-PS1='[\[\e[0;32m\]\u\[\e[0m\]@\h \w]\$ '
+#PS1='[\[\e[1;32m\]\u\[\e[0m\]@\h \w]\$ '
+#PS1='\[\e[1;37m\][\[\e[1;32m\]\u\[\e[1;37m\]@\[\e[1;36m\]\h\[\e[1;37m\] \w]\$\[\e[0m\] '
+PS1='\[\e[1m\][\u@\h \w]\$\[\e[0m\] '
 
 PATH=$PATH:~/bin
 
@@ -42,4 +44,4 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-toilet -F gay -f future Quelotic
+toilet -f future -F border Quelotic | lolcat -S 100

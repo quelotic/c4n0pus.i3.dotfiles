@@ -1,0 +1,17 @@
+#!/bin/bash
+# IP Address on terminal using curl on ifconfig.co
+# Quelotic
+# v.2
+
+echo ""
+echo " Connecting..."
+
+ip=$(curl -s ifconfig.co/x-real-ip)
+country=$(curl -s ifconfig.co/x-ip-country)
+
+echo ""
+echo "┌───────────────────────────────────────┐"
+echo "│     IP: $ip			│"
+echo "│     Country: $country			│"
+echo "└───────────────────────────────────────┘"
+echo ""
