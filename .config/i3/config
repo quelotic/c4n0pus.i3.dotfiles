@@ -12,8 +12,8 @@
 set $mod Mod4
 
 # autostart applications
-exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/minimalist
-#exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/arrivalCircle.jpg
+#exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/minimalist
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/archSolarized.png
 exec --no-startup-id compton -f --xrender-sync --xrender-sync-fence --blur-background
 
 # load workspace layout
@@ -27,7 +27,7 @@ exec --no-startup-id compton -f --xrender-sync --xrender-sync-fence --blur-backg
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font xft:Ubuntu Mono 10
 #font xft:Noto Mono 10
-font xft:xos4 Terminus 10
+font xft:Terminus 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -143,7 +143,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace0
 
 # i3-gaps per workspace settings
-workspace $workspace1 gaps inner 5
+workspace $workspace1 gaps inner 10
 workspace $workspace2 gaps inner 15
 workspace $workspace3 gaps inner 15
 workspace $workspace4 gaps outer 20
@@ -186,6 +186,7 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="Viewnior"] floating enable
 for_window [class="obs"] floating enable
 for_window [class="skypeforlinux"] floating enable
+for_window [class="pavucontrol"] floating enable
 
 # borders of new window
 # new_window <normal|1pixel|none|pixel>
@@ -230,9 +231,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20
 # finds out, if available)
 bar {
     height 25
+    position top
 	status_command ~/.config/conky/conky.sh
-    font xft: FontAwesome 11, Noto Mono 11
-	colors {
+    font xft: FontAwesome, Terminus 9
+    colors {
         background  #002b36
         statusline  #839496
         separator   #586e75
@@ -245,11 +247,7 @@ bar {
 
 # windows color theme
 #                       border      background  text        indicator
-#client.focused          #002b36     #586e75     #fdf6e3     #268bd2
-#client.focused_inactive #002b36     #073642     #839496     #073642
-#client.unfocused        #002b36     #073642     #839496     #073642
-#client.urgent           #002b36     #dc322f     #fdf6e3     #002b36
 client.focused          #002b36     #002b36     #839496     #002b36
 client.focused_inactive #002b36     #073642     #657b83     #002b36
-client.unfocused        #002b36     #073642     #657b83     #002b36
+client.unfocused        #002b36     #002b36     #657b83     #002b36
 client.urgent           #002b36     #dc322f     #fdf6e3     #002b36

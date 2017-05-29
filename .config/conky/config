@@ -11,6 +11,7 @@ diskio_avg_samples 2
 
 TEXT
 [\
+
 # Capslock
 ${if_match "${exec xset q | grep 'Caps Lock' | sed 's/.*Caps Lock:[ ]*\([^ ]*\).*/\1/'}"=="on"}
     {"full_text":"  CapsLock","color":"\#859900","separator":false,"separator_block_width":0},\
@@ -45,6 +46,22 @@ ${endif}
 {"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
 #################################################################################
 
+# Free space on root
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+{"full_text":"${fs_free /}","color":"\#657b83","separator":false,"separator_block_width":0},\
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
+# Free space on /home
+{"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
+{"full_text":"${fs_free /home}","color":"\#657b83","separator":false,"separator_block_width":0},\
+
+#################################################################################
+{"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
+#################################################################################
+
 # Upload
 {"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
 {"full_text":"${upspeed wlp4s0}","color":"\#657b83","separator":false,"separator_block_width":0},\
@@ -63,18 +80,11 @@ ${endif}
 
 # CPU
 {"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
-${if_match ${cpu cpu0}<25}
-    {"full_text":"${cpu cpu0}%","color":"\#657b83","separator":false,"separator_block_width":0},\
+${if_match ${cpu cpu0}>=75}
+    {"full_text":"${cpu cpu0}%","color":"\#dc322f","separator":false,"separator_block_width":0},\
 ${else}
-${if_match ${cpu cpu0}<50}
     {"full_text":"${cpu cpu0}%","color":"\#657b83","separator":false,"separator_block_width":0},\
-${else}
-${if_match ${cpu cpu0}<75}
-    {"full_text":"${cpu cpu0}%","color":"\#657b83","separator":false,"separator_block_width":0},\
-${else}
-${if_match ${cpu cpu0}<=100}
-    {"full_text":"{cpu cpu0}%","color":"\#7780a1","separator":false,"separator_block_width":0},\
-${endif}${endif}${endif}${endif}
+${endif}
 
 #################################################################################
 {"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
@@ -82,18 +92,11 @@ ${endif}${endif}${endif}${endif}
 
 # Memory
 {"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
-${if_match ${memperc}<30}
-    {"full_text":"${mem}B","color":"\#657b83","separator":false,"separator_block_width":0},\
-${else}
-${if_match ${memperc}<60}
-    {"full_text":"${mem}","color":"\#657b83","separator":false,"separator_block_width":0},\
-${else} 
-${if_match ${memperc}<85}
-    {"full_text":"${mem}","color":"\#657b83","separator":false,"separator_block_width":0},\
-${else}
 ${if_match ${memperc}>=85}
-    {"full_text":"${mem}","color":"\#7780a1","separator":false,"separator_block_width":0},\
-${endif}${endif}${endif}${endif}
+    {"full_text":"${mem}","color":"\#dc322f","separator":false,"separator_block_width":0},\
+${else}
+    {"full_text":"${mem}","color":"\#657b83","separator":false,"separator_block_width":0},\
+${endif}
 
 #################################################################################
 {"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
@@ -123,19 +126,20 @@ ${endif}${endif}${endif}${endif}${endif}
 ${if_match "${exec cat /sys/class/power_supply/AC/online}"=="1"}
     {"full_text":"  ","color":"\#dc322f","separator":false,"separator_block_width":0},\
 ${endif}
-# if battery charging, green color
-#${if_match "${exec cat /sys/class/power_supply/BAT1/status}"=="Charging"}
-#    {"full_text":"${battery_percent BAT1}%","color":"\#b58900","separator":false,"separator_block_width":0},\
-#${else}
-#${if_match "${exec cat /sys/class/power_supply/BAT1/status}"=="Discharging"}
-    ${if_match ${battery_percent BAT1}<25}
-        {"full_text":"${battery_percent BAT1}%","color":"\#dc322f","separator":false,"separator_block_width":0},\
-#    ${endif}
+# if no battery, show no percentage
+${if_empty ${exec ls /sys/class/power_supply/BAT1/status | grep 'BAT1'}}
+    {"full_text":"","separator":false,"separator_block_width":0},\
 ${else}
-#${if_match "${exec cat /sys/class/power_supply/BAT1/status}"=="Discharging"}
+# if battery charging, green color
+${if_match "${exec cat /sys/class/power_supply/BAT1/status}"=="Charging"}
+    {"full_text":"${battery_percent BAT1}%","color":"\#b58900","separator":false,"separator_block_width":0},\
+${else}
+# if less than 10% left, red color
+${if_match ${battery_percent BAT1}<=10}
+    {"full_text":"${battery_percent BAT1}%","color":"\#dc322f","separator":false,"separator_block_width":0},\
+${else}
     {"full_text":"${battery_percent BAT1}%","color":"\#657b83","separator":false,"separator_block_width":0},\
-#${endif}${endif}
-${endif}
+${endif}${endif}${endif}
 
 #################################################################################
 {"full_text":" ","color":"\#ffffff","separator":true,"separator_block_width":6},\
@@ -143,13 +147,6 @@ ${endif}
 
 # Volume
 {"full_text":"  ","color":"\#7780a1","separator":false,"separator_block_width":6},\
-
-# amixer
-#${if_match "${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f8 | tr -d '[]'}"=="off"}
-#   {"full_text":"MUTE","color":"\#dc322f","separator":false,"separator_block_width":0},\
-#${else}
-#   {"full_text":"${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6 | tr -d '[]%'}","color":"\#657b83","separator":false,"separator_block_width":0},\
-#${endif}
 
 # pulseaudio
 ${if_match ${exec pactl list sinks | grep "Volume: front-left:" | cut -d "/" -f2 | tr -d ' %'}>100}

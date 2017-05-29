@@ -4,10 +4,10 @@ use strict;
 # Quelotic
 # Checks for package updates for Arch Linux users
 
-open (MYINPUTFILE, "updates.log") or die "No such file or directory: $!";
+open (INPUTFILE, "/home/quelotic/.config/conky/pacupdates/updates.log") or die "$!";
 
 my $i = 0;
-while(<MYINPUTFILE>)
+while(<INPUTFILE>)
 {
     if (/^(.*)\/(.*)(\..*\..*\.)/)
     {
@@ -18,4 +18,4 @@ while(<MYINPUTFILE>)
 
 print "$i";
 
-close(MYINPUTFILE);
+close(INPUTFILE);

@@ -1,0 +1,50 @@
+elp
+help
+mkdir 
+mkdir helpMaterial
+shell 
+tag
+tag_add 
+tag_toggle 
+open_with q
+rm
+open_with deadbeef
+mkdir rTorrent
+rename rtorrent
+rename test.torrent
+delete 
+mkdir session
+rename .session
+mkdir watch
+rename 3.c
+rename 2_custom.c
+rename 2.c
+rename 3custom.c
+rename 2custom.c
+rename 1.c
+mkdir pokyBuildsSD
+rename linaro-image-minimal
+rename linux-xlnx-test1framebuffer
+rename u-boot.img
+search basic
+search_file basic
+search_inc basic
+q
+find -name default.config
+find co
+find d
+find linux
+remove
+open_with vim
+rename template.c
+mkdir lab7
+rename templateHelp.c
+rename exam.txt
+mkdir meta-analogzed
+
+search *adv7511.dtb
+search adv7511.dtb
+mkdir compiledKernel
+open_with 
+delete
+rename linaroPreciseUbuntu

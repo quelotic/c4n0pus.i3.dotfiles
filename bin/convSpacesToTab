@@ -1,0 +1,1 @@
+df -h | tr -s ' ' $'\t' | grep sda3 | cut -f4

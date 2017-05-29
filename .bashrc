@@ -44,4 +44,4 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-toilet -f future -F border Quelotic | lolcat -S 100
+#toilet -f future -F border Quelotic | lolcat -S 100

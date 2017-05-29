@@ -16,7 +16,7 @@ rofi.color-enabled: true
 
 rofi.modi: window,run,ssh
 rofi.columns: 1
-rofi.font: xos4 Terminus 14
+rofi.font: Noto Mono 11
 rofi.separator-style: none
 rofi.hide-scrollbar: true
 
@@ -43,10 +43,12 @@ URxvt.cursorBlink: False
 URxvt.internalBorder: 15
 
 ! Extensions
-!URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
-!URxvt.urlLauncher: xdg-open
-!URxvt.urlButton: 1
-!URxvt.underlineURLs: True
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+URxvt.url-select.launcher: firefox
+URxvt.url-select.underline: true
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
 
 !URxvt.copyCommand:  xclip -i -selection clipboard
 !URxvt.pasteCommand: xclip -o -selection clipboard
@@ -58,9 +60,6 @@ URxvt.internalBorder: 15
 !URxvt.keysym.M-c: perl:clipboard:copy
 !URxvt.keysym.M-v: perl:clipboard:paste
 !URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-!URxvt.keysym.M-Escape: perl:keyboard-select:activate
-!URxvt.keysym.C-Escape: perl:keyboard-select:activate
-!URxvt.keysym.M-u: perl:url-select:select_next
 
 ! DejaVu Font
 URxvt.font:             xft:DejaVu Sans Mono:style=Book:pixelsize=12
@@ -94,10 +93,10 @@ Xft.hintstyle: hintslight
 #define S_green         #859900
 
 ! Trapsparency
-!URxvt.depth: 32
+URxvt.depth: 32
 !URxvt.blurRadius: 5
-!*background:            [85]S_base03
-*background:            S_base03
+*background:            [85]S_base03
+!*background:            S_base03
 *foreground:            S_base00
 *fading:                40
 *fadeColor:             S_base03

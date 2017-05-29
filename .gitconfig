@@ -36,6 +36,9 @@
 # Thin out older metadata within the repository, reduceses filesystem footprint
 #    trim = !git reflog expire --expire=now --all && git gc --prune=now
 
+#[credential]
+#    helper = osxkeychain
+
 [color]
     ui = true
 
@@ -81,5 +84,5 @@
     insteadOf = gist:
 
 [user]
-    name = real name
-	email = mail@hotmail.com
+	name = Thomas Antoniou
+	email = thomas.antoniou@hotmail.com
