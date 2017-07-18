@@ -6,7 +6,7 @@ Packages used and required by the config files (especially .config/i3/config):
 
     feh         used by i3 to load a desktop background
     compton     window transition effects, shadows and transparency
-    scror       used on binding for screenshot
+    scrot       used on binding for screenshot
     rofi        app launcher
     pulseaudio  keybindings for volume control
     noto-fonts
